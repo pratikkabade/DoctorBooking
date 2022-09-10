@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Orders Recieved";
+}
+@model List<Order>
+
+
+<div class="mainSection">
+    @foreach (var item in Model)
+    {
+        <div class="subSection">
+            <h1>@item.TransactionId</h1>
+            <h1>@item.MemberId</h1>
+            <h1>@item.Insurance_Policy_Number</h1>
+            <h1>@item.InsuranceProvider</h1>
+            <h1>@item.PrescriptionDate</h1>
+            <h1>@item.DosageForDay</h1>
+            <h1>@item.PrescriptionCourse</h1>
+            <h1>@item.DoctorDetails</h1>
+            <h1>@item.UserId</h1>
+            <h1>@item.Email</h1>
+        </div>
+    }
+</div>
