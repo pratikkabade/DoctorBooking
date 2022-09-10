@@ -19,14 +19,6 @@ namespace frontend.Models
 
 
         // ROLE DATA FIELD
-        public string Role { get; set; } = "Customer";
-
-
-        // DATA REGISTRATION FIELD
-        public int MobileNumber { get; set; }
-        public int AadharCard { get; set; }
-        public string PAN_Card { get; set; }
-        public string Address { get; set; }
-        public string Nominee { get; set; }
+        public string Role { get; set; } = "Member";
     }
 }
