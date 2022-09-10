@@ -1,4 +1,4 @@
 USE master
 GO
-DROP DATABASE [edgeBank]
+DROP DATABASE [hopeClinic]
 GO

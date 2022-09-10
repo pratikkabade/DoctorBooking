@@ -50,7 +50,7 @@ namespace BackendAPI.Controllers
         {
             this.user_data_context.User.Add(New_User);
             this.user_data_context.SaveChanges();
-            return "New_User created successfully!";
+            return "New User created successfully!";
         }
 
 
