@@ -3,8 +3,30 @@
 .contactForm textarea {
   margin-bottom: 20px;
 } */
+
+:root {
+  --accent: #12c2c2 !important;
+}
+
 .contactButton {
   border: none !important;
+}
+
+.contactButton:hover {
+  filter: brightness(1.1) !important;
+}
+
+.barItem a:hover {
+  filter: brightness(1.1) !important;
+}
+
+.logOutBTN {
+  background-color: var(--red) !important;
+  box-shadow: none !important;
+}
+
+.logOutBTN:hover {
+  box-shadow: 0 0px 10px rgba(179, 0, 0, 0.7) !important;
 }
 
 .logoLink {
@@ -18,15 +40,21 @@
 .logoLink img {
   width: 50px;
   border-radius: 50%;
-  filter: brightness(1.2);
+  filter: brightness(1.1);
   transition: 0.15s;
   box-shadow: none;
-  border: 1px solid var(--accent);
+  border: none;
 }
 
 .logoLink:hover {
-  color: rgb(37, 115, 183);
-  filter: brightness(1.2);
+  color: var(--accent);
+  filter: brightness(1.1);
+  transition: 0.2s;
+}
+
+.logoLink a:hover {
+  color: var(--accent);
+  filter: brightness(1.1);
   transition: 0.2s;
 }
 
@@ -54,7 +82,16 @@
 .container2 {
   display: block;
   text-align: center;
-  background-color: var(--accentdim2);
+  background-color: #12c2c21f;
+  color: var(--accent);
+  width: 100% !important;
+  height: 94% !important;
+}
+
+.container3 {
+  display: block;
+  text-align: center;
+  background-color: #12c2c22b;
   color: var(--accent);
   width: 100% !important;
   height: 94% !important;
