@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Contacts";
+}
+@model List<Drugs>
+
+
+<div class="mainSection">
+    @foreach (var item in Model)
+    {
+        <div class="subSection">
+            <h1>@item.DrugId</h1>
+            <h1>@item.Name</h1>
+            <h1>@item.Manufacturer</h1>
+            <h1>@item.ManufacturedDate</h1>
+            <h1>@item.ExpiryDate</h1>
+            <h1>@item.Quantities</h1>
+            <h1>@item.Location</h1>
+            <h1>@item.UserId</h1>
+        </div>
+    }
+</div>

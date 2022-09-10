@@ -1,0 +1,32 @@
+@{
+    ViewBag.Title = "Drugs";
+}
+@model Drugs
+
+<form asp-action="Drugs" asp-controller="Drugs" method="post" class="contactForm">
+    <h1 class="headerText">Contact Us</h1>
+    <div class="form-group">
+        <input asp-for="Name" type="text" class="form-control" id="Name" placeholder="Enter drug Name">
+    </div>
+    <div class="form-group">
+        <input asp-for="Manufacturer" type="text" class="form-control" id="Manufacturer"
+            placeholder="Enter Manufacturer">
+    </div>
+    <div class="form-group">
+        <input asp-for="ManufacturedDate" type="text" class="form-control" id="ManufacturedDate"
+            placeholder="Enter ManufacturedDate">
+    </div>
+    <div class="form-group">
+        <input asp-for="ExpiryDate" type="text" class="form-control" id="ExpiryDate" placeholder="Enter ExpiryDate">
+    </div>
+    <div class="form-group">
+        <input asp-for="Quantities" type="text" class="form-control" id="Quantities" placeholder="Enter Quantities">
+    </div>
+    <div class="form-group">
+        <input asp-for="Location" type="text" class="form-control" id="Location" placeholder="Enter Location">
+    </div>
+    <div class="form-group">
+        <input asp-for="UserId" type="text" class="form-control" id="UserId" placeholder="Enter UserId">
+    </div>
+    <button type="submit" class="contactButton">Submit</button>
+</form>
