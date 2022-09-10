@@ -53,11 +53,11 @@ namespace frontend.Controllers
 
                 if (user.Role == "Admin")
                 {
-                    return RedirectToAction("MyAccount", "User");
+                    return RedirectToAction("HomePage", "User");
                 }
                 else
                 {
-                    return RedirectToAction("MyAccount", "User");
+                    return RedirectToAction("HomePage", "User");
                 }
             }
             ViewBag.Message = "Invalid Username or Password";
@@ -80,6 +80,13 @@ namespace frontend.Controllers
             {
                 return RedirectToAction("Error401", "Error");
             }
+        }
+
+
+        public IActionResult HomePage()
+        {
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
         }
     }
 }

@@ -10,6 +10,7 @@
     }
 </style>
 
+
 <div class="mainSection">
     <h2>@Html.Raw(@ViewBag.Message)</h2>
     <div class="subSection">
@@ -22,6 +23,31 @@
     <div class="subSection">
         <a asp-controller="ContactUs" asp-action="Index">
             Messages
+        </a>
+    </div>
+</div>
+<div class="mainSection">
+    <div class="subSection">
+        <a asp-controller="Doctor" asp-action="Index">
+            Doctor
+        </a>
+    </div>
+    <div class="subSection">
+        <a asp-controller="Medicine" asp-action="Index">
+            Medicine
+        </a>
+    </div>
+</div>
+
+<div class="mainSection">
+    <div class="subSection">
+        <a asp-controller="Drugs" asp-action="Index">
+            Drugs
+        </a>
+    </div>
+    <div class="subSection">
+        <a asp-controller="Order" asp-action="Index">
+            Orders
         </a>
     </div>
 </div>

@@ -65,7 +65,7 @@
 /* ONE */
 
 .containerMod {
-  height: 75%;
+  height: 57%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +73,17 @@
 
 .container1 h1 {
   font-size: 80px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   color: var(--accent);
-  margin-bottom: 200px !important;
+  margin-top: 200px;
+}
+
+.container1 h2 {
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+  color: #0aa6a6;
 }
 
 .container2 {
@@ -164,7 +171,12 @@
   text-decoration: none;
   color: var(--accent);
   font-size: 30px;
-  transition: 0.2s;
+  transition: 0.1s;
+}
+
+.appLink a:hover {
+  color: var(--accentdark);
+  transition: 0.1s;
 }
 
 .appLink img {

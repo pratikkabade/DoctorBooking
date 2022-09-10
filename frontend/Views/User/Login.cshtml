@@ -3,7 +3,7 @@
 }
 @model Users
 
-<form asp-action="Login" class="border text-center contactForm">
+<form asp-action="Login" class="border contactForm">
     <h1 class="headerText">Log in</h1>
 
     <div class="form-group row">
@@ -19,9 +19,11 @@
     <div class="row">
         <span></span>
         <span>@Html.ValidationMessageFor(u => u.Password)</span>
-    </div><br /><br />
+    </div>
 
     <button type="submit" class="btn btn-success">LOG IN</button><br /><br />
 
     <h6 style="color:red">@Html.Raw(@ViewBag.Message)</h6>
+
+    <h6>If you dont have an account, <a asp-controller="NewUser" asp-action="Create">Register Here</a></h6>
 </form>
