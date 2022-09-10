@@ -31,5 +31,17 @@ namespace frontend.Controllers
             return View();
         }
 
+        public IActionResult MedicineMessage()
+        {
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+        public IActionResult DoctorMessage()
+        {
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
     }
 }

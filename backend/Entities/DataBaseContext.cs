@@ -10,6 +10,8 @@ namespace BackendAPI.Models
         }
         public DbSet<Users> User { get; set; }
         public DbSet<ContactUs> ContactMsg { get; set; }
+        public DbSet<Doctor> DoctorReq { get; set; }
+        public DbSet<Medicine> MedicineReq { get; set; }
         public DbSet<Drugs> Drug { get; set; }
         public DbSet<Order> Orders { get; set; }
 
@@ -34,6 +36,24 @@ namespace BackendAPI.Models
                     Name = "sample",
                     Email = "sample@gmail.com",
                     Message = "Hello, I am sample user. I am facing some issues with the website. Please help me out."
+                });
+            modelBuilder.Entity<Medicine>().HasData(
+                new Medicine
+                {
+                    Id = 1,
+                    Date = DateTime.Now,
+                    Name = "Medicine",
+                    Email = "sample@gmail.com",
+                    Message = "Hello, I am sample user. I need this medicine."
+                });
+            modelBuilder.Entity<Doctor>().HasData(
+                new Doctor
+                {
+                    Id = 1,
+                    Date = DateTime.Now,
+                    Name = "Doctor",
+                    Email = "sample@gmail.com",
+                    Message = "Hello, I am sample user. I need doctor."
                 });
 
             // modelBuilder.Entity<Drugs>().HasData(
