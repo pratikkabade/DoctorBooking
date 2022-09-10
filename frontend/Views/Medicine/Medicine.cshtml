@@ -1,0 +1,19 @@
+@{
+    ViewBag.Title = "Book your Medicine";
+}
+@model Medicine
+
+<form asp-action="Medicine" asp-controller="Medicine" method="post" class="contactForm">
+    <h1 class="headerText">Book your Medicine</h1>
+    <div class="form-group">
+        <input asp-for="Name" type="text" class="form-control" id="name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+        <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <textarea asp-for="Message" class="form-control" id="message" rows="3"
+            placeholder="Fill out the medicines you need here"></textarea>
+    </div>
+    <button type="submit" class="contactButton">Submit</button>
+</form>
