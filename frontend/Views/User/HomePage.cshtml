@@ -1,0 +1,35 @@
+@{
+    ViewBag.Title = "HomePage";
+}
+
+<style>
+    .subSection a {
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+    }
+</style>
+
+
+@if (@ViewBag.LogMessage == "admin@gmail.com")
+{
+    <div class="mainSection">
+        <h2>@Html.Raw(@ViewBag.Message)</h2>
+        <div class="subSection">
+            <a asp-controller="User" asp-action="MyAccount">
+                Administator
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="mainSection">
+        <h2>@Html.Raw(@ViewBag.Message)</h2>
+        <div class="subSection">
+            <a asp-controller="Home" asp-action="Index">
+                Index
+            </a>
+        </div>
+    </div>
+}
