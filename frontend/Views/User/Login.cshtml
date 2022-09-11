@@ -19,11 +19,11 @@
     <div class="row">
         <span></span>
         <span>@Html.ValidationMessageFor(u => u.Password)</span>
-    </div>
-
-    <button type="submit" class="btn btn-success">LOG IN</button><br /><br />
+    </div> <br />
 
     <h6 style="color:red">@Html.Raw(@ViewBag.Message)</h6>
+
+    <button type="submit" class="contactButton">LOG IN</button><br /><br />
 
     <h6>If you dont have an account, <a asp-controller="NewUser" asp-action="Create">Register Here</a></h6>
 </form>

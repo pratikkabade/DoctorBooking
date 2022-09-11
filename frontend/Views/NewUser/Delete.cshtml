@@ -2,7 +2,12 @@
     ViewBag.Title = "Delete - " + @Model.FirstName;
 }
 @model Users
-
+<style>
+    input {
+        border: none !important;
+        cursor: default;
+    }
+</style>
 
 <form asp-action="Delete" asp-controller="NewUser" method="post" class="contactForm">
     <h1 class="headerText" style="color: var(--red);">Delete - @Model.FirstName</h1>
