@@ -39,26 +39,24 @@ namespace frontend.Controllers
         [HttpPost]
         public async Task<IActionResult> Drugs(Drugs drugReq)
         {
-            if (ModelState.IsValid)
-            {
-                var serializedProductToCreate = JsonConvert.SerializeObject(drugReq);
-                var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs");
-                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                request.Content = new StringContent(serializedProductToCreate);
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var response = await httpDrugClient.SendAsync(request);
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("DrugMessage", "Messages");
-                }
-                else
-                {
-                    return RedirectToAction("Error401", "Error");
-                }
+            var serializedProductToCreate = JsonConvert.SerializeObject(drugReq);
+            var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Content = new StringContent(serializedProductToCreate);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await httpDrugClient.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("DrugMessage", "Messages");
             }
             else
-                return RedirectToAction("Error404", "Error");
+            {
+                return RedirectToAction("Error401", "Error");
+            }
         }
 
 
@@ -69,7 +67,122 @@ namespace frontend.Controllers
         {
             httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs");
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs/");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var drugReq = new List<Drugs>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    drugReq = JsonConvert.DeserializeObject<List<Drugs>>(content);
+                }
+                return View(drugReq);
+            }
+            else
+            {
+                return RedirectToAction("Error401", "Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DrugSearch()
+        {
+            await Task.Delay(1000);
+            HttpContext.Session.SetString("DrugId", Request.Form["DrugId"]);
+            HttpContext.Session.SetString("DrugName", Request.Form["DrugName"]);
+            return RedirectToAction("DrugSearch", "Drugs");
+        }
+
+
+
+        //DrugById_dd
+        [HttpGet]
+        public async Task<IActionResult> DrugById(int DrugId)
+        {
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/id/{DrugId}");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var drugReq = new List<Drugs>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    drugReq = JsonConvert.DeserializeObject<List<Drugs>>(content);
+                }
+                return View(drugReq);
+            }
+            else
+            {
+                return RedirectToAction("Error401", "Error");
+            }
+        }
+        // //DrugById
+        // [HttpGet]
+        // public async Task<IActionResult> DrugById(int id)
+        // {
+        //     var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/id/{id}");
+        //     response.EnsureSuccessStatusCode();
+        //     var content = await response.Content.ReadAsStringAsync();
+
+        //     ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+        //     var drugReq = new Drugs();
+        //     if (response.Content.Headers.ContentType.MediaType == "application/json")
+        //     {
+        //         drugReq = JsonConvert.DeserializeObject<Drugs>(content);
+        //     }
+        //     return View(drugReq);
+        // }
+
+
+
+
+
+
+
+
+        //DrugByName
+        [HttpGet]
+        public async Task<IActionResult> DrugByName()
+        {
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs/name/sinarest");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var drugReq = new List<Drugs>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    drugReq = JsonConvert.DeserializeObject<List<Drugs>>(content);
+                }
+                return View(drugReq);
+            }
+            else
+            {
+                return RedirectToAction("Error401", "Error");
+            }
+        }
+
+
+
+        //DrugByLocation
+        [HttpGet]
+        public async Task<IActionResult> DrugByLocation()
+        {
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs/id/1");
             var content = await response.Content.ReadAsStringAsync();
 
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");

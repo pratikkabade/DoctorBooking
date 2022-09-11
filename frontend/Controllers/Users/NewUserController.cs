@@ -67,28 +67,21 @@ namespace frontend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Users new_user)
         {
-            if (ModelState.IsValid)
-            {
-                var serializedProductToCreate = JsonConvert.SerializeObject(new_user);
-                var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/administration");
-                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                request.Content = new StringContent(serializedProductToCreate);
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var response = await http_Client.SendAsync(request);
+            var serializedProductToCreate = JsonConvert.SerializeObject(new_user);
+            var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/administration");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Content = new StringContent(serializedProductToCreate);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await http_Client.SendAsync(request);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("CreateMessage", "Messages");
-                }
-                else
-                {
-                    // ViewBag.Message = "Admin access required";
-                    // return View("Create");
-                    return RedirectToAction("Error401", "Error");
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CreateMessage", "Messages");
             }
             else
+            {
                 return RedirectToAction("Error401", "Error");
+            }
         }
 
 
@@ -119,7 +112,7 @@ namespace frontend.Controllers
             if (ModelState.IsValid)
             {
                 //http_Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                http_Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+                // http_Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
                 var serializedProductToEdit = JsonConvert.SerializeObject(edit_user);
                 var request = new HttpRequestMessage(HttpMethod.Put, Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/{edit_user.UserId}");
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

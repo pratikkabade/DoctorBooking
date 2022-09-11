@@ -39,26 +39,23 @@ namespace frontend.Controllers
         [HttpPost]
         public async Task<IActionResult> Order(Order orderNo)
         {
-            if (ModelState.IsValid)
-            {
-                var serializedProductToCreate = JsonConvert.SerializeObject(orderNo);
-                var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/order");
-                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                request.Content = new StringContent(serializedProductToCreate);
-                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var response = await httpOrderClient.SendAsync(request);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("OrderMessage", "Messages");
-                }
-                else
-                {
-                    return RedirectToAction("Error401", "Error");
-                }
+            var serializedProductToCreate = JsonConvert.SerializeObject(orderNo);
+            var request = new HttpRequestMessage(HttpMethod.Post, Configuration.GetValue<string>("WebAPIBaseUrl") + "/order");
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Content = new StringContent(serializedProductToCreate);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await httpOrderClient.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("OrderMessage", "Messages");
             }
             else
-                return RedirectToAction("Error404", "Error");
+            {
+                return RedirectToAction("Error401", "Error");
+            }
+
         }
 
 
@@ -66,6 +63,33 @@ namespace frontend.Controllers
         //INDEX
         [HttpGet]
         public async Task<IActionResult> Index()
+        {
+            httpOrderClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpOrderClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+            var response = await httpOrderClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/order/order");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var orderNo = new List<Order>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    orderNo = JsonConvert.DeserializeObject<List<Order>>(content);
+                }
+                return View(orderNo);
+            }
+            else
+            {
+                return RedirectToAction("Error401", "Error");
+            }
+        }
+
+
+        //MyOrder
+        [HttpGet]
+        public async Task<IActionResult> MyOrder()
         {
             httpOrderClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpOrderClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));

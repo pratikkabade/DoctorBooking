@@ -25,6 +25,6 @@ namespace frontend.Models
 
         public string Email { get; set; }
         // public Drugs Drug { get; set; }
-        // public int DrugId { get; set; }
+        public int DrugId { get; set; }
     }
 }

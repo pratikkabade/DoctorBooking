@@ -48,23 +48,17 @@ namespace frontend.Controllers
                 JWT jwt = JsonConvert.DeserializeObject<JWT>(token);
                 HttpContext.Session.SetString("token", jwt.Token);
                 HttpContext.Session.SetString("UserName", user.Email);
+                HttpContext.Session.SetString("UserId", user.UserId.ToString());
 
                 ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
 
-                if (user.Role == "Admin")
-                {
-                    return RedirectToAction("HomePage", "User");
-                }
-                else
-                {
-                    return RedirectToAction("HomePage", "User");
-                }
+                return RedirectToAction("HomePage", "User");
             }
             ViewBag.Message = "Invalid Username or Password";
             return View("Login");
         }
 
-        public async Task<IActionResult> MyAccount()
+        public async Task<IActionResult> ControlPannel()
         {
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
@@ -84,6 +78,13 @@ namespace frontend.Controllers
 
 
         public IActionResult HomePage()
+        {
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+
+        public IActionResult MyAccount()
         {
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
             return View();
