@@ -33,6 +33,7 @@ namespace BackendAPI.Controllers
 
 
         // INDEX
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IEnumerable<Drugs> Get()
         {
@@ -41,21 +42,21 @@ namespace BackendAPI.Controllers
 
 
         // GET BY ID
-        [HttpGet("id-{id}")]
-        public Drugs Get(int id)
+        [HttpGet("id/{id}")]
+        public IEnumerable<Drugs> Get(int id)
         {
-            return this.data_context.Drug.Where(drug => drug.DrugId == id).FirstOrDefault();
+            return data_context.Drug.Where(drug => drug.UserId == id).ToList();
         }
 
         // GET BY NAME
-        [HttpGet("name-{name}")]
+        [HttpGet("name/{name}")]
         public Drugs GetName(string name)
         {
             return this.data_context.Drug.Where(drug => drug.Name == name).FirstOrDefault();
         }
 
         // GET BY NAME
-        [HttpGet("location-{name}")]
+        [HttpGet("location/{name}")]
         public Drugs GetLocation(string location)
         {
             return this.data_context.Drug.Where(drug => drug.Location == location).FirstOrDefault();

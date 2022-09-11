@@ -14,7 +14,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BackendAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AdministrationController : Controller
@@ -36,7 +35,6 @@ namespace BackendAPI.Controllers
         }
 
         // DETAILS
-        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public Users Get(int id)
         {
@@ -44,7 +42,6 @@ namespace BackendAPI.Controllers
         }
 
         // CREATE
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public string Post([FromBody] Users New_User)
         {
@@ -55,7 +52,6 @@ namespace BackendAPI.Controllers
 
 
         // EDIT
-        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Users New_User)
         {
@@ -64,7 +60,6 @@ namespace BackendAPI.Controllers
         }
 
         // DELETE
-        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

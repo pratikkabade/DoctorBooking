@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class OrderController : Controller
@@ -22,7 +21,6 @@ namespace BackendAPI.Controllers
         }
 
         // CREATE
-        // [Authorize(Roles = "Admin")]
         [HttpPost]
         public string Post([FromBody] Order transaction)
         {
@@ -36,6 +34,32 @@ namespace BackendAPI.Controllers
         [Authorize(Roles = "Admin")]
         [HttpGet("order")]
         public IEnumerable<UserOrder> GetOrder()
+        {
+            var usersOrder = from o in order_context.Set<Order>()
+                             join u in order_context.Set<Users>()
+                             on o.UserId equals u.UserId
+                             select new UserOrder
+                             {
+                                 TransactionId = o.TransactionId,
+
+                                 MemberId = o.MemberId,
+                                 Insurance_Policy_Number = o.Insurance_Policy_Number,
+                                 InsuranceProvider = o.InsuranceProvider,
+                                 PrescriptionDate = o.PrescriptionDate,
+                                 DosageForDay = o.DosageForDay,
+                                 PrescriptionCourse = o.PrescriptionCourse,
+                                 DoctorDetails = o.DoctorDetails,
+
+                                 UserId = o.UserId,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 Email = u.Email,
+                             };
+            return usersOrder.ToList();
+        }
+
+        [HttpGet("order/{id}")]
+        public IEnumerable<UserOrder> GetOrderById()
         {
             var usersOrder = from o in order_context.Set<Order>()
                              join u in order_context.Set<Users>()
