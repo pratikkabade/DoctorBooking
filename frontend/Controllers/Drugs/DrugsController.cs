@@ -55,7 +55,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
 
@@ -83,7 +83,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
 
@@ -120,7 +120,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
         // //DrugById
@@ -170,7 +170,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
 
@@ -198,7 +198,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
 

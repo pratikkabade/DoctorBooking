@@ -93,6 +93,8 @@
   background-color: #12c2c21f;
   color: var(--accent);
   width: 100% !important;
+  padding-top: 50px;
+  padding-bottom: 10%;
 }
 
 .container3 {
@@ -101,6 +103,8 @@
   background-color: #12c2c22b;
   color: var(--accent);
   width: 100% !important;
+  padding-top: 50px;
+  padding-bottom: 10%;
 }
 
 .moveDownLink {
@@ -325,4 +329,30 @@ kbd {
 .dateForm {
   border: none !important;
   cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(38, 160, 8, 0.2);
+  transition: 0.1s;
+}
+
+.dateForm:hover {
+  box-shadow: 3px 3px 3px rgba(38, 160, 8, 0.2);
+  transition: 0.1s;
+}
+
+.calIcon {
+  margin: 10px;
+  font-size: 35px;
+  color: #1dc57b;
+}
+
+.dateFormRed {
+  border: none !important;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(255, 0, 0, 0.2);
+  transition: 0.1s;
+}
+
+.calIconRed {
+  margin: 10px;
+  font-size: 35px;
+  color: #ff0000;
 }

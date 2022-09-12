@@ -11,48 +11,73 @@
 </style>
 
 
-<div class="mainSection">
-    <h2>@Html.Raw(@ViewBag.Message)</h2>
-    <div class="subSection">
-        <a asp-controller="NewUser" asp-action="Users">
-            Users
-        </a>
+@if (@ViewBag.LogMessage == "admin@gmail.com")
+{
+    <div class="mainSection">
+        <h2>@Html.Raw(@ViewBag.Message)</h2>
+        <div class="subSection">
+            <a asp-controller="NewUser" asp-action="Users">
+                Users
+            </a>
+        </div>
     </div>
-</div>
-<div class="mainSection">
-    <div class="subSection">
-        <a asp-controller="ContactUs" asp-action="Index">
-            Messages
-        </a>
+    <div class="mainSection">
+        <div class="subSection">
+            <a asp-controller="ContactUs" asp-action="Index">
+                Messages
+            </a>
+        </div>
     </div>
-</div>
-<div class="mainSection">
-    <div class="subSection">
-        <a asp-controller="Doctor" asp-action="Index">
-            Doctor
-        </a>
+    <div class="mainSection">
+        <div class="subSection">
+            <a asp-controller="Doctor" asp-action="Index">
+                Doctor
+            </a>
+        </div>
+        <div class="subSection">
+            <a asp-controller="Medicine" asp-action="Index">
+                Medicine
+            </a>
+        </div>
     </div>
-    <div class="subSection">
-        <a asp-controller="Medicine" asp-action="Index">
-            Medicine
-        </a>
-    </div>
-</div>
 
-<div class="mainSection">
-    <div class="subSection">
-        <a asp-controller="Drugs" asp-action="Index">
-            Drugs
-        </a>
+    <div class="mainSection">
+        <div class="subSection">
+            <a asp-controller="Drugs" asp-action="Index">
+                Drugs
+            </a>
+        </div>
+        <div class="subSection">
+            <a asp-controller="Drugs" asp-action="Drugs">
+                Add new Drugs
+            </a>
+        </div>
+        <div class="subSection">
+            <a asp-controller="Order" asp-action="Index">
+                Orders
+            </a>
+        </div>
     </div>
-    <div class="subSection">
-        <a asp-controller="Drugs" asp-action="Drugs">
-            Add new Drugs
-        </a>
+}
+else
+{
+    <style>
+        #customNav {
+            background-color: #f5f4e9;
+        }
+
+        body,
+        html {
+            background-color: #f5f4e9;
+        }
+    </style>
+
+    <div class="mainSection" style="box-shadow: none; margin-top:200px">
+        <img src="https://i.pinimg.com/originals/43/b7/88/43b788696f1888284f0f321fd0af022a.gif" alt="load">
     </div>
-    <div class="subSection">
-        <a asp-controller="Order" asp-action="Index">
-            Orders
-        </a>
-    </div>
-</div>
+    <script>
+        setTimeout(function () {
+            window.location.href = 'https://localhost:5002/Error/Load3';
+        }, 2000);
+    </script>
+}

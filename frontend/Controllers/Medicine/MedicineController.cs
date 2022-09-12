@@ -54,11 +54,11 @@ namespace frontend.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Error401", "Error");
+                    return RedirectToAction("Load1", "Error");
                 }
             }
             else
-                return RedirectToAction("Error404", "Error");
+                return RedirectToAction("Load2", "Error");
         }
 
 
@@ -85,7 +85,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Error401", "Error");
+                return RedirectToAction("Load1", "Error");
             }
         }
 
