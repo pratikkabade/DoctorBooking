@@ -61,7 +61,7 @@ namespace BackendAPI.Controllers
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var handler = new JwtSecurityTokenHandler();
             var token = handler.CreateJwtSecurityToken(issuer, audience, identity,
-            now, now.Add(TimeSpan.FromHours(1)), now, signingCredentials);
+            now, now.Add(TimeSpan.FromHours(100)), now, signingCredentials);
             var encodedJwt = handler.WriteToken(token);
             return encodedJwt;
         }
