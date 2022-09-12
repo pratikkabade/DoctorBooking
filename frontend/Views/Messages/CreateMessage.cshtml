@@ -21,14 +21,30 @@
     }
 </style>
 
-<div class="sectioN sectioNG noSelect">
-    <h1>200.</h1><br>
-    <h2>New account has been created <span style=" font-weight: 800">Successfully</span></h2>
-</div>
 
+@if (@ViewBag.LogMessage == null)
+{
+    <div class="sectioN sectioNG noSelect">
+        <h2>Your account has been created <span style=" font-weight: 800">Successfully</span></h2><br>
+        <h2>Please <span style=" font-weight: 800">Log In</span> with new details</h2>
+    </div>
 
-<script>
-    setTimeout(function () {
-        window.location.href = 'https://localhost:5002/NewUser/Users';
-    }, 3000);
-</script>
+    <script>
+        setTimeout(function () {
+            window.location.href = 'https://localhost:5002/User/Login';
+        }, 5000);
+    </script>
+}
+else
+{
+    <div class="sectioN sectioNG noSelect">
+        <h1>200.</h1><br>
+        <h2>New account has been created <span style=" font-weight: 800">Successfully</span></h2>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = 'https://localhost:5002/User/ControlPannel';
+        }, 3000);
+    </script>
+}
