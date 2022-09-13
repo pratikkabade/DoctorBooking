@@ -121,6 +121,55 @@ namespace frontend.Controllers
                 var response = await http_Client.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
+                    return RedirectToAction("Users", "NewUser");
+                }
+                else
+                {
+                    return RedirectToAction("Load1", "Error");
+                }
+            }
+            else
+                return RedirectToAction("Load1", "Error");
+        }
+
+
+
+
+
+
+        //EDIT BY EMAIL
+        [HttpGet]
+        public async Task<IActionResult> EditByMail(string id)
+        {
+            var response = await http_Client.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/email/{id}");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            var edit_user = new Users();
+            if (response.Content.Headers.ContentType.MediaType == "application/json")
+            {
+                edit_user = JsonConvert.DeserializeObject<Users>(content);
+            }
+            return View(edit_user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditByMail(Users edit_user)
+        {
+            if (ModelState.IsValid)
+            {
+                //http_Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                // http_Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
+                var serializedProductToEdit = JsonConvert.SerializeObject(edit_user);
+                var request = new HttpRequestMessage(HttpMethod.Put, Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/email/{edit_user.UserId}");
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                request.Content = new StringContent(serializedProductToEdit);
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var response = await http_Client.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
                     return RedirectToAction("EditMessage", "Messages");
                 }
                 else
@@ -131,6 +180,8 @@ namespace frontend.Controllers
             else
                 return RedirectToAction("Load1", "Error");
         }
+
+
 
 
 
@@ -161,6 +212,53 @@ namespace frontend.Controllers
                 http_Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
                 var serializedProductToDelete = JsonConvert.SerializeObject(del_user);
                 var request = new HttpRequestMessage(HttpMethod.Delete, Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/{del_user.UserId}");
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                request.Content = new StringContent(serializedProductToDelete);
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var response = await http_Client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Users", "NewUser");
+                }
+                else
+                {
+                    return RedirectToAction("Load1", "Error");
+                }
+            }
+            else
+                return RedirectToAction("Load1", "Error");
+        }
+
+
+
+
+        //DELETEBYMAIL
+        [HttpGet]
+        public async Task<IActionResult> DeleteByMail(string id)
+        {
+            var response = await http_Client.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/email/{id}");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            var del_user = new Users();
+            if (response.Content.Headers.ContentType.MediaType == "application/json")
+            {
+                del_user = JsonConvert.DeserializeObject<Users>(content);
+            }
+            return View(del_user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteByMail(Users del_user)
+        {
+            if (ModelState.IsValid)
+            {
+                //http_Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var serializedProductToDelete = JsonConvert.SerializeObject(del_user);
+                var request = new HttpRequestMessage(HttpMethod.Delete, Configuration.GetValue<string>("WebAPIBaseUrl") + $"/administration/email/{del_user.Email}");
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 request.Content = new StringContent(serializedProductToDelete);
                 request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");

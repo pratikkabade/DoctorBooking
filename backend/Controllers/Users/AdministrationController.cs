@@ -66,5 +66,31 @@ namespace BackendAPI.Controllers
             this.user_data_context.User.Remove(this.user_data_context.User.Where(New_User => New_User.UserId == id).FirstOrDefault());
             this.user_data_context.SaveChanges();
         }
+
+
+        // DETAILS-MAIL
+        [HttpGet("email/{email}")]
+        public Users GetMail(string email)
+        {
+            return this.user_data_context.User.Where(user => user.Email == email).FirstOrDefault();
+        }
+
+
+        // EDIT-BYEMAIL
+        [HttpPut("email/{email}")]
+        public void PutMail(string email, [FromBody] Users New_User)
+        {
+            this.user_data_context.User.Update(New_User);
+            this.user_data_context.SaveChanges();
+        }
+
+        // DELETE-BYEMAIL
+        [HttpDelete("email/{email}")]
+        public void DeleteMail(string email)
+        {
+            this.user_data_context.User.Remove(this.user_data_context.User.Where(New_User => New_User.Email == email).FirstOrDefault());
+            this.user_data_context.SaveChanges();
+        }
+
     }
 }
