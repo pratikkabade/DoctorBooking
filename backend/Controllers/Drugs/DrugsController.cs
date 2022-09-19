@@ -81,7 +81,7 @@ namespace BackendAPI.Controllers
         }
 
         // GET BY NAME
-        [HttpGet("location/{name}")]
+        [HttpGet("location/{location}")]
         public Drugs GetLocation(string location)
         {
             return this.data_context.Drug.Where(drug => drug.Location == location).FirstOrDefault();
