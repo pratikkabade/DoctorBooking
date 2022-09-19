@@ -1,0 +1,3 @@
+#  Get Order by Location
+
+https://localhost:5001/api/drugs/location/pune

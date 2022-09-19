@@ -1,0 +1,3 @@
+#  Get Order by Email
+
+https://localhost:5001/api/drugs/email/admin@gmail.com
