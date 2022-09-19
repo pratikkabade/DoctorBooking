@@ -22,6 +22,7 @@ namespace BackendAPI.Models
         // ADVANCED
         public Users User { get; set; }
         public int UserId { get; set; }
+        public string Email { get; set; }
 
         // public Order Order { get; set; }
         // public int TransactionId { get; set; }

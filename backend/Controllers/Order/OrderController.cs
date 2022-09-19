@@ -58,8 +58,8 @@ namespace BackendAPI.Controllers
             return usersOrder.ToList();
         }
 
-        [HttpGet("order/{id}")]
-        public IEnumerable<UserOrder> GetOrderById()
+        [HttpGet("email/{email}")]
+        public IEnumerable<UserOrder> GetOrderById(string email)
         {
             var usersOrder = from o in order_context.Set<Order>()
                              join u in order_context.Set<Users>()
@@ -81,36 +81,8 @@ namespace BackendAPI.Controllers
                                  LastName = u.LastName,
                                  Email = u.Email,
                              };
-            return usersOrder.ToList();
+            return usersOrder.ToList().Where(x => x.Email == email);
         }
 
-
-
-
-        // GET DRUGS
-        [Authorize(Roles = "Admin")]
-        [HttpGet("drug")]
-        public IEnumerable<UserDrug> GetDrug()
-        {
-            var usersDrug = from u in order_context.Set<Users>()
-                            join d in order_context.Set<Drugs>()
-                            on u.UserId equals d.UserId
-                            select new UserDrug
-                            {
-                                DrugId = d.DrugId,
-                                Name = d.Name,
-                                Manufacturer = d.Manufacturer,
-                                ManufacturedDate = d.ManufacturedDate,
-                                ExpiryDate = d.ExpiryDate,
-                                Quantities = d.Quantities,
-                                Location = d.Location,
-
-                                UserId = u.UserId,
-                                FirstName = u.FirstName,
-                                LastName = u.LastName,
-                                Email = u.Email,
-                            };
-            return usersDrug.ToList();
-        }
     }
 }

@@ -87,24 +87,13 @@ namespace frontend.Controllers
             }
         }
 
-        [HttpPost]
+
+        //DrugSearch
+        [HttpGet]
         public async Task<IActionResult> DrugSearch()
         {
-            await Task.Delay(1000);
-            HttpContext.Session.SetString("DrugId", Request.Form["DrugId"]);
-            HttpContext.Session.SetString("DrugName", Request.Form["DrugName"]);
-            return RedirectToAction("DrugSearch", "Drugs");
-        }
-
-
-
-        //DrugById_dd
-        [HttpGet]
-        public async Task<IActionResult> DrugById(int DrugId)
-        {
             httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/id/{DrugId}");
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/no-auth");
             var content = await response.Content.ReadAsStringAsync();
 
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
@@ -123,23 +112,33 @@ namespace frontend.Controllers
                 return RedirectToAction("Load1", "Error");
             }
         }
-        // //DrugById
-        // [HttpGet]
-        // public async Task<IActionResult> DrugById(int id)
-        // {
-        //     var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/id/{id}");
-        //     response.EnsureSuccessStatusCode();
-        //     var content = await response.Content.ReadAsStringAsync();
 
-        //     ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
 
-        //     var drugReq = new Drugs();
-        //     if (response.Content.Headers.ContentType.MediaType == "application/json")
-        //     {
-        //         drugReq = JsonConvert.DeserializeObject<Drugs>(content);
-        //     }
-        //     return View(drugReq);
-        // }
+
+        //DrugById
+        [HttpGet]
+        public async Task<IActionResult> DrugById(int id)
+        {
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/id/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var drugReq = new List<Drugs>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    drugReq = JsonConvert.DeserializeObject<List<Drugs>>(content);
+                }
+                return View(drugReq);
+            }
+            else
+            {
+                return RedirectToAction("Load1", "Error");
+            }
+        }
 
 
 
@@ -150,11 +149,10 @@ namespace frontend.Controllers
 
         //DrugByName
         [HttpGet]
-        public async Task<IActionResult> DrugByName()
+        public async Task<IActionResult> DrugByName(string name)
         {
             httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs/name/sinarest");
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/name/{name}");
             var content = await response.Content.ReadAsStringAsync();
 
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
@@ -170,7 +168,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Load1", "Error");
+                return RedirectToAction("Load4", "Error");
             }
         }
 
@@ -178,11 +176,10 @@ namespace frontend.Controllers
 
         //DrugByLocation
         [HttpGet]
-        public async Task<IActionResult> DrugByLocation()
+        public async Task<IActionResult> DrugByLocation(string location)
         {
             httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // httpDrugClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/drugs/id/1");
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/location/{location}");
             var content = await response.Content.ReadAsStringAsync();
 
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
@@ -198,7 +195,34 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Load1", "Error");
+                return RedirectToAction("Load4", "Error");
+            }
+        }
+
+
+
+        //DrugByEMAIL
+        [HttpGet]
+        public async Task<IActionResult> MyDrugs(string email)
+        {
+            httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/email/admin@gmail.com");
+            var content = await response.Content.ReadAsStringAsync();
+
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var drugReq = new List<Drugs>();
+                if (response.Content.Headers.ContentType.MediaType == "application/json")
+                {
+                    drugReq = JsonConvert.DeserializeObject<List<Drugs>>(content);
+                }
+                return View(drugReq);
+            }
+            else
+            {
+                return RedirectToAction("Load4", "Error");
             }
         }
 

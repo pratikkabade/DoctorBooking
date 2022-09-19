@@ -42,6 +42,31 @@ namespace BackendAPI.Controllers
 
 
         // GET BY ID
+        [HttpGet("no-auth")]
+        public IEnumerable<UserDrug> NoAuth()
+        {
+            var usersDrug = from u in data_context.Set<Users>()
+                            join d in data_context.Set<Drugs>()
+                            on u.UserId equals d.UserId
+                            select new UserDrug
+                            {
+                                DrugId = d.DrugId,
+                                Name = d.Name,
+                                Manufacturer = d.Manufacturer,
+                                ManufacturedDate = d.ManufacturedDate,
+                                ExpiryDate = d.ExpiryDate,
+                                Quantities = d.Quantities,
+                                Location = d.Location,
+
+                                UserId = u.UserId,
+                                FirstName = u.FirstName,
+                                LastName = u.LastName,
+                                Email = u.Email,
+                            };
+            return usersDrug.ToList();
+        }
+
+        // GET BY ID
         [HttpGet("id/{id}")]
         public IEnumerable<Drugs> Get(int id)
         {
@@ -61,6 +86,33 @@ namespace BackendAPI.Controllers
         {
             return this.data_context.Drug.Where(drug => drug.Location == location).FirstOrDefault();
         }
+
+        // GET DRUGS
+        [HttpGet("Email/{email}")]
+        public IEnumerable<UserDrug> GetEmail(string email)
+        {
+            var usersDrug = from u in data_context.Set<Users>()
+                            join d in data_context.Set<Drugs>()
+                            on u.UserId equals d.UserId
+                            select new UserDrug
+                            {
+                                DrugId = d.DrugId,
+                                Name = d.Name,
+                                Manufacturer = d.Manufacturer,
+                                ManufacturedDate = d.ManufacturedDate,
+                                ExpiryDate = d.ExpiryDate,
+                                Quantities = d.Quantities,
+                                Location = d.Location,
+
+                                UserId = u.UserId,
+                                FirstName = u.FirstName,
+                                LastName = u.LastName,
+                                Email = u.Email,
+                            };
+            return usersDrug.ToList().Where(drug => drug.Email == email);
+        }
+
+
 
 
         // EDIT

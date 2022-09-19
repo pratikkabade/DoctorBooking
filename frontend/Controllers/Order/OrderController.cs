@@ -53,7 +53,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Load1", "Error");
+                return RedirectToAction("Load4", "Error");
             }
 
         }
@@ -82,18 +82,18 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Load1", "Error");
+                return RedirectToAction("Load4", "Error");
             }
         }
 
 
         //MyOrder
         [HttpGet]
-        public async Task<IActionResult> MyOrder()
+        public async Task<IActionResult> MyOrder(string email)
         {
             httpOrderClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpOrderClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpOrderClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/order/order");
+            var response = await httpOrderClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/order/email/admin@gmail.com");
             var content = await response.Content.ReadAsStringAsync();
 
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
@@ -109,7 +109,7 @@ namespace frontend.Controllers
             }
             else
             {
-                return RedirectToAction("Load1", "Error");
+                return RedirectToAction("Load4", "Error");
             }
         }
 
