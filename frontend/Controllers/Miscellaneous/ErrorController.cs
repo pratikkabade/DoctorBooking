@@ -38,6 +38,13 @@ namespace frontend.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Unexpected()
+        {
+            await Task.Delay(100);
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
         public async Task<IActionResult> Load1()
         {
             await Task.Delay(100);
@@ -53,6 +60,13 @@ namespace frontend.Controllers
         }
 
         public async Task<IActionResult> Load3()
+        {
+            await Task.Delay(100);
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+        public async Task<IActionResult> Load4()
         {
             await Task.Delay(100);
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
