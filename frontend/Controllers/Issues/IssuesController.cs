@@ -16,10 +16,10 @@ using frontend.Models;
 namespace frontend.Controllers
 {
 
-    public class MedicineController : Controller
+    public class IssuesController : Controller
     {
         private static HttpClient httpMsgClient = new HttpClient();
-        public MedicineController(IConfiguration configuration)
+        public IssuesController(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -29,7 +29,7 @@ namespace frontend.Controllers
 
         //CREATE
         [HttpGet]
-        public async Task<IActionResult> Medicine()
+        public async Task<IActionResult> Issues()
         {
             ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
             await Task.Delay(1000);
@@ -37,7 +37,7 @@ namespace frontend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Medicine(Medicine medicineReq)
+        public async Task<IActionResult> Issues(Medicine medicineReq)
         {
             if (ModelState.IsValid)
             {

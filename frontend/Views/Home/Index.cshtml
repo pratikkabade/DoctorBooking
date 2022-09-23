@@ -25,9 +25,10 @@
     <h2 class="head">From People you know and Healthcare you trust.</h2>
 </div>
 
+<div id="doc"></div>
 <div class="containerMod container2">
     <div class="padRL">
-        <a class="moveDownLink" href="#page2a" id="page2a"> We Hope for your good Health </a>
+        <a class="moveDownLink" href="#doc"> We Hope for your good Health </a>
 
         <div class="pagecomp pushDown">
             <img src="https://raw.githubusercontent.com/pratikkabade/sdf/68ae0de85ca89395451e0948877bf8c8ccc3f899/private.svg"
@@ -57,9 +58,10 @@
     </div>
 </div>
 
+<div id="med"></div>
 <div class="containerMod container3">
     <div class="padRL">
-        <a class="moveDownLink" href="#page2b" id="page2b"> Get all your medicines.
+        <a class="moveDownLink" href="#med"> Get all your medicines.
             Everytime. On time. </a>
 
         <div class="pagecomp pushDown">
@@ -79,7 +81,7 @@
             </div>
         </div>
         <div class="pagecomp">
-            <img src="https://raw.githubusercontent.com/pratikkabade/sdf/68ae0de85ca89395451e0948877bf8c8ccc3f899/lab.svg"
+            <img src="https://raw.githubusercontent.com/pratikkabade/sdf/a0a2d29d3d58c31f8746162c7f209b1c28b800db/lab.svg"
                 alt="as">
             <div class="textSection">
                 <h5>Integrated Labs</h5>
@@ -92,10 +94,10 @@
 <div class="centreText">
     <a class="moveDownLink" href="#page3" id="page3">More </a>
 </div>
-<div class="footer containerMod ">
+<div class="footer containerMod noSelect">
 
     <div class="appLink">
-        <h1>Hope Clinic</h1>
+        <h1>Apps</h1>
         <a asp-controller="Home" asp-action="Index"><img
                 src="https://github.com/pratikkabade/EdgeBank/raw/%236-F-Home/frontend/Assets/play.png" alt="play"></a>
         <br>
@@ -104,10 +106,13 @@
     </div>
     <div class="appLink">
         <h1>Services</h1>
-        <a asp-controller="Doctor" asp-action="Doctor">Doctor</a> <br>
-        <a asp-controller="Medicine" asp-action="Medicine">Medicine</a> <br>
-        <a asp-controller="Order" asp-action="Order">Order Online</a> <br>
+        <a asp-controller="Doctor" asp-action="Doctor">Book a Doctor</a> <br>
+        <a asp-controller="Order" asp-action="Order">Order your Medicines</a>
+    </div>
+    <div class="appLink">
+        <h1>Care</h1>
         <a asp-controller="ContactUs" asp-action="ContactUs">Contact Us</a> <br>
+        <a asp-controller="Issues" asp-action="Issues">Report Problem</a>
     </div>
     <div class="appLink">
         <h1>Social</h1>
@@ -117,11 +122,5 @@
 </div>
 
 <div class="footerLogo containerMod">
-    <a asp-controller="Home" asp-action="Index" class="logoLink">
-        <img alt='a'
-            src='https://raw.githubusercontent.com/pratikkabade/sdf/68ae0de85ca89395451e0948877bf8c8ccc3f899/logo%20(2).svg'
-            draggable='false' />
-        Hope Clinic
-    </a>
     <h5>Copyright © 2022, Hope Clinic. All rights reserved.</h5>
 </div>
