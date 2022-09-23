@@ -28,8 +28,14 @@ else if (@ViewBag.LogMessage != null)
     <div class="mainSection">
         <h2>@Html.Raw(@ViewBag.Message)</h2>
         <div class="subSection">
-            <a asp-controller="Home" asp-action="Index">
-                Index
+            <a asp-controller="Drugs" asp-action="MyDrugs" asp-route-id=@ViewBag.LogMessage>
+                My Drugs
+            </a>
+        </div>
+
+        <div class="subSection">
+            <a asp-controller="Order" asp-action="MyOrder" asp-route-id=@ViewBag.LogMessage>
+                My Order
             </a>
         </div>
     </div>

@@ -203,7 +203,7 @@ namespace frontend.Controllers
 
         //DrugByEMAIL
         [HttpGet]
-        public async Task<IActionResult> MyDrugs(string email)
+        public async Task<IActionResult> MyDrugs()
         {
             httpDrugClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = await httpDrugClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + $"/drugs/email/admin@gmail.com");

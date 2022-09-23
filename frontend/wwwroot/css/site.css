@@ -36,6 +36,10 @@
   padding: 5px;
   font-size: 30px;
   transition: 0.2s;
+  border: 2px solid var(--accentdim2);
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: white !important;
 }
 
 .logoLink img {
@@ -51,6 +55,7 @@
   color: var(--accent);
   filter: brightness(1.1);
   transition: 0.2s;
+  box-shadow: var(--shadowtiny);
 }
 
 .logoLink a:hover {
@@ -76,7 +81,7 @@
   font-weight: 700;
   text-align: center;
   color: var(--accent);
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .container1 h2 {
@@ -94,7 +99,7 @@
   color: var(--accent);
   width: 100% !important;
   padding-top: 50px;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 }
 
 .container3 {
@@ -104,7 +109,7 @@
   color: var(--accent);
   width: 100% !important;
   padding-top: 50px;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 }
 
 .moveDownLink {
@@ -159,7 +164,9 @@
 .footer {
   display: flex;
   justify-content: space-around !important;
-  height: 40%;
+  height: 45%;
+  align-items: flex-start;
+  margin-top: 50px;
 }
 
 .centreText {
@@ -188,7 +195,7 @@
 }
 
 .footerLogo {
-  height: 15% !important;
+  height: 5% !important;
   display: block;
   text-align: center;
 }
@@ -361,4 +368,9 @@ kbd {
   margin: 10px;
   font-size: 35px;
   color: #ff0000;
+}
+
+
+#customNav {
+  background-color: #12c2c20c !important;
 }

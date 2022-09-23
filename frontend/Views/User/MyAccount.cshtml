@@ -11,8 +11,7 @@
 </style>
 
 
-
-@if (@ViewBag.LogMessage == "admin@gmail.com")
+@if (@ViewBag.LogMessage != null)
 {
     <div class="mainSection">
 
@@ -25,48 +24,6 @@
         <div class="subSection">
             <a asp-controller="NewUser" asp-action="DeleteByMail" asp-route-id="@ViewBag.LogMessage">
                 Delete Account
-            </a>
-        </div>
-
-        <div class="subSection">
-            <a asp-controller="Drugs" asp-action="MyDrugs" asp-route-id=@ViewBag.LogMessage>
-                My Drugs
-            </a>
-        </div>
-
-        <div class="subSection">
-            <a asp-controller="Order" asp-action="MyOrder" asp-route-id=@ViewBag.LogMessage>
-                My Order
-            </a>
-        </div>
-
-    </div>
-}
-else if (@ViewBag.LogMessage != null)
-{
-    <div class="mainSection">
-
-        <div class="subSection">
-            <a asp-controller="NewUser" asp-action="EditByMail" asp-route-id="@ViewBag.LogMessage">
-                Edit Details
-            </a>
-        </div>
-
-        <div class="subSection">
-            <a asp-controller="NewUser" asp-action="DeleteByMail" asp-route-id="@ViewBag.LogMessage">
-                Delete Account
-            </a>
-        </div>
-
-        <div class="subSection">
-            <a asp-controller="Drugs" asp-action="MyDrugs" asp-route-id=@ViewBag.LogMessage>
-                My Drugs
-            </a>
-        </div>
-
-        <div class="subSection">
-            <a asp-controller="Order" asp-action="MyOrder" asp-route-id=@ViewBag.LogMessage>
-                My Order
             </a>
         </div>
 
