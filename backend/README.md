@@ -29,14 +29,6 @@
     dotnet ef database update
     ```
 
-    Expected output
-
-    ```output
-    Build started...
-    Build succeeded.
-    Done.
-    ```
-
     ```             
     dotnet run
     ```
