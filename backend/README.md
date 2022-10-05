@@ -29,14 +29,6 @@
     dotnet ef database update
     ```
 
-    Expected output
-
-    ```output
-    Build started...
-    Build succeeded.
-    Done.
-    ```
-
     ```             
     dotnet run
     ```
@@ -94,45 +86,65 @@ https://localhost:5001/api/authenticate/1
 
 ---
 
-  #### 1. `GET` all_cashflow
+  #### 1. `GET` all_drugs
 ```
-https://localhost:5001/api/CashFlow/
-```
-
-  #### 2. `GET` first_cashflow
-```
-https://localhost:5001/api/CashFlow/1
+https://localhost:5001/api/drugs/
 ```
 
-  #### 3. `POST` create_cashflow
+  #### 2. `GET` drugs_by_id
 ```
-https://localhost:5001/api/authenticate
+https://localhost:5001/api/drugs/id-1
+```
+
+  #### 3. `GET` drugs_by_name
+```
+https://localhost:5001/api/drugs/name-sinarest
+```
+
+  #### 4. `POST` drugs
+```
+https://localhost:5001/api/drugs/
 ```
 ```http
 {
-  "transactionType":"withdrawal",
-  "transactionAmount":"23000",
-  "UserId": "1",
-  "transactionDate": "2022-09-09T06:30:00",
-  "transactionStatus": "Successful"
+  "name": "sinarest",
+  "manufacturer": "adv pharma",
+  "manufacturedDate": "2022-01-01T06:30:00",
+  "expiryDate": "2022-11-01T00:00:00",
+  "quantities": 250,
+  "location": "pune",
+  "userId":1
 }
 ```
 
 ---
 
-  #### 1. `GET` all_products
+  #### 1. `GET` all_orders_by_order
 ```
-https://localhost:5001/api/products
+https://localhost:5001/api/order/order
 ```
 
-  #### 1. `POST` first_product
+  #### 2. `GET` all_orders_by_drug
+```
+https://localhost:5001/api/order/drug
+```
+
+  #### 1. `POST` order
 ```
 https://localhost:5001/api/products/1
 ```
-
-  #### 3. `DELETE` first_product
-```
-https://localhost:5001/api/products/1
+```http
+{
+  "MemberId":"2434",
+  "Insurance_Policy_Number": "123456789",
+  "InsuranceProvider": "ICICI",
+  "PrescriptionDate": "1999-11-18T06:30:00",
+  "DosageForDay": 2,
+  "PrescriptionCourse": "2 weeks",
+  "DoctorDetails": "Dr. John",
+  "UserId":"1",
+  "DrugId":"1"
+}
 ```
 
 ---

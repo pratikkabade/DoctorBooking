@@ -1,0 +1,45 @@
+@{
+    ViewBag.Title = "DrugSearch";
+}
+@model List<Drugs>
+
+
+<div class="contactForm">
+    <h1 class="headerText">Search by User ID</h1>
+
+    @foreach (var item in Model)
+    {
+        <a class="btn btn-primary" asp-controller="Drugs" asp-action="DrugById" asp-route-id=@item.UserId>@item.UserId</a>
+    }
+</div>
+
+
+<div class="contactForm">
+    <h1 class="headerText">Search by Name</h1>
+
+    @foreach (var item in Model)
+    {
+        <a class="btn btn-primary" asp-controller="Drugs" asp-action="DrugByName" asp-route-id=@item.Name>@item.Name</a>
+    }
+</div>
+
+
+<div class="contactForm">
+    <h1 class="headerText">Search by Location</h1>
+
+    @foreach (var item in Model)
+    {
+        <a class="btn btn-primary" asp-controller="Drugs" asp-action="DrugByLocation"
+        asp-route-id=@item.Location>@item.Location</a>
+    }
+</div>
+
+
+<div class="contactForm">
+    <h1 class="headerText">Search by Location</h1>
+
+    @foreach (var item in Model)
+    {
+        <a class="btn btn-primary" asp-controller="Drugs" asp-action="MyDrugs" asp-route-id=@item.Email>@item.Email</a>
+    }
+</div>

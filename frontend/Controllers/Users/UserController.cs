@@ -48,38 +48,37 @@ namespace frontend.Controllers
                 JWT jwt = JsonConvert.DeserializeObject<JWT>(token);
                 HttpContext.Session.SetString("token", jwt.Token);
                 HttpContext.Session.SetString("UserName", user.Email);
+                HttpContext.Session.SetString("UserId", user.UserId.ToString());
 
                 ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
 
-                if (user.Role == "Admin")
-                {
-                    return RedirectToAction("MyAccount", "User");
-                }
-                else
-                {
-                    return RedirectToAction("MyAccount", "User");
-                }
+                return RedirectToAction("HomePage", "User");
             }
             ViewBag.Message = "Invalid Username or Password";
             return View("Login");
         }
 
+        public async Task<IActionResult> ControlPannel()
+        {
+            await Task.Delay(100);
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+
+        public async Task<IActionResult> HomePage()
+        {
+            await Task.Delay(100);
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+
         public async Task<IActionResult> MyAccount()
         {
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("token"));
-            var response = await httpClient.GetAsync(Configuration.GetValue<string>("WebAPIBaseUrl") + "/administration");
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
-            {
-                ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Error401", "Error");
-            }
+            await Task.Delay(100);
+            ViewBag.LogMessage = HttpContext.Session.GetString("UserName");
+            return View();
         }
     }
 }

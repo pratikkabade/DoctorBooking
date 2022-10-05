@@ -1,0 +1,13 @@
+# Create Drug
+
+POST https://localhost:5001/api/drugs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTY2MzYwOTc4NSwiZXhwIjoxNjYzOTY5Nzg1LCJpYXQiOjE2NjM2MDk3ODUsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo1MDAyIn0.mJHlzP0_ct5cJLadved313b5-jFyVlxAnIX3C61W01o
+
+{
+"name": "crocin",
+"manufacturer": "adv pharma",
+"quantities": 550,
+"location": "chennai",
+"userId":1
+}

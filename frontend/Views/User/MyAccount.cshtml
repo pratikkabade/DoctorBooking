@@ -10,26 +10,44 @@
     }
 </style>
 
-<div class="mainSection">
-    <h2>@Html.Raw(@ViewBag.Message)</h2>
-    <div class="subSection">
-        <a asp-controller="NewUser" asp-action="Users">
-            Users
-        </a>
+
+@if (@ViewBag.LogMessage != null)
+{
+    <div class="mainSection">
+
+        <div class="subSection">
+            <a asp-controller="NewUser" asp-action="EditByMail" asp-route-id="@ViewBag.LogMessage">
+                Edit Details
+            </a>
+        </div>
+
+        <div class="subSection">
+            <a asp-controller="NewUser" asp-action="DeleteByMail" asp-route-id="@ViewBag.LogMessage">
+                Delete Account
+            </a>
+        </div>
+
     </div>
-    <div class="subSection">
-        <a asp-controller="Products" asp-action="Index">
-            Products
-        </a>
+}
+else if (@ViewBag.LogMessage == null)
+{
+    <style>
+        #customNav {
+            background-color: #f5f4e9;
+        }
+
+        body,
+        html {
+            background-color: #f5f4e9;
+        }
+    </style>
+
+    <div class="mainSection" style="box-shadow: none; margin-top:200px">
+        <img src="https://i.pinimg.com/originals/43/b7/88/43b788696f1888284f0f321fd0af022a.gif" alt="load">
     </div>
-    <div class="subSection">
-        <a asp-controller="ContactUs" asp-action="Index">
-            Messages
-        </a>
-    </div>
-    <div class="subSection">
-        <a asp-controller="CashFlow" asp-action="Index">
-            CashFlow
-        </a>
-    </div>
-</div>
+    <script>
+        setTimeout(function () {
+            window.location.href = 'https://localhost:5002/Error/NotLoggedIn';
+        }, 1000);
+    </script>
+}

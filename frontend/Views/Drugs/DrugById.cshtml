@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Drugs by ID";
+}
+@model List<Drugs>
+
+<table class="table table-condensed table-striped  table-hover pushDown">
+    <thead>
+        <tr>
+            <th style="width: 5%;">DrugId</th>
+            <th style="width: 10%;">Name</th>
+            <th style="width: 10%;">Location</th>
+            <th style="width: 10%;">Quantities</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+
+        {
+            <tr>
+                <td style="width: 5%;">@item.DrugId</td>
+                <td style="width: 10%;">@item.Name</td>
+                <td style="width: 10%;">@item.Location</td>
+                <td style="width: 10%;">@item.Quantities</td>
+                <td>
+                    <Details>
+                        <Summary>Details</Summary>
+                        <p><kbd>DrugId</kbd> @item.DrugId</p>
+                        <p><kbd>Name</kbd> @item.Name</p>
+                        <p><kbd>Manufacturer</kbd> @item.Manufacturer</p>
+                        <p><kbd>ManufacturedDate</kbd> @item.ManufacturedDate</p>
+                        <p><kbd>ExpiryDate</kbd> @item.ExpiryDate</p>
+                        <p><kbd>Quantities</kbd> @item.Quantities</p>
+                        <p><kbd>Location</kbd> @item.Location</p>
+                        <p><kbd>UserId</kbd> @item.UserId</p>
+                    </Details>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

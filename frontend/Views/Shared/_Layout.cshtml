@@ -4,19 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EdgeBank - @ViewData["Title"]</title>
+    <title>Hope Clinic - @ViewData["Title"]</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- Online Content -->
-    <link rel="icon" href="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/logo.png">
+    <link rel="icon"
+        href="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/logo%20med.svg">
     <link rel="stylesheet" href="https://cdn.statically.io/gh/dependabot-pr/Static-Files/main/style.css">
     <link rel="stylesheet" href="https://cdn.statically.io/gh/dependabot-pr/Static-Files/main/animation.css">
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 </head>
 
 <body>
@@ -25,11 +27,19 @@
             <div class='container-fluid'>
                 <ul class='navbar-nav justify-content-start'>
                     <li>
-                        <a asp-controller="Home" asp-action="Index" class="logoLink">
+                        <a href="https://localhost:5002/#doc" class="logoLink">
                             <img alt='a'
-                                src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/logo.png"
+                                src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/logo%20med.svg"
                                 draggable='false' />
-                            EdgeBank
+                            Hope Clinic
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://localhost:5002/#med" class="logoLink">
+                            <img alt='a'
+                                src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/logo%20clinic.svg"
+                                draggable='false' />
+                            Med
                         </a>
                     </li>
                 </ul>
@@ -42,6 +52,24 @@
                             </a>
                         </li>
                     }
+                    else if (@ViewBag.LogMessage == "admin@gmail.com")
+                    {
+                        <li class="barItem ">
+                            <a asp-controller="User" asp-action="MyAccount" class="nav-link">
+                                MyAccount
+                            </a>
+                        </li>
+                        <li class="barItem ">
+                            <a asp-controller="User" asp-action="ControlPannel" class="nav-link">
+                                ControlPannel
+                            </a>
+                        </li>
+                        <li class="barItem ">
+                            <a asp-controller="Home" asp-action="Index" class="nav-link logOutBTN">
+                                Logout
+                            </a>
+                        </li>
+                    }
                     else
                     {
                         <li class="barItem ">
@@ -50,8 +78,7 @@
                             </a>
                         </li>
                         <li class="barItem ">
-                            <a asp-controller="Home" asp-action="Index" class="nav-link"
-                            style="background-color: var(--red)!important;">
+                            <a asp-controller="Home" asp-action="Index" class="nav-link logOutBTN">
                                 Logout
                             </a>
                         </li>

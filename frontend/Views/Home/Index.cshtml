@@ -14,57 +14,105 @@
         margin: 0px !important;
         margin-top: 65px !important;
     }
+
+    #customNav {
+        background-color: #000000;
+    }
 </style>
 
-<div class="containerMod container1">
-    <h1 class="head">Meet the banking that keeps pace with you</h1>
+<div class="containerMod container1" style="display: block;">
+    <h1 class="head">The Future of Healthcare</h1>
+    <h2 class="head">From People you know and Healthcare you trust.</h2>
 </div>
 
+<div id="doc"></div>
 <div class="containerMod container2">
     <div class="padRL">
-        <a class="moveDownLink" href="#page2" id="page2">Your smart account is backed by </a>
+        <a class="moveDownLink" href="#doc"> We Hope for your good Health </a>
 
+        <div class="pagecomp pushDown">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/private.svg"
+                alt="as">
+            <div class="textSection">
+                <h5>Completely private and confidential</h5>
+                <h6>We care for your privacy</h6>
+            </div>
+        </div>
+        <div class="pagecomp">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/24x7.svg"
+                alt="as">
+            <div class="textSection">
+                <h5>24*7 Access to Doctors</h5>
+                <h6>Which means no worries to go Hospital now</h6>
+            </div>
+        </div>
         <div class="pagecomp ">
-            <img src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/trust.png" alt="as">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/calendar.svg"
+                alt="as">
             <div class="textSection">
-                <h5>Max Trust</h5>
-                <h6>We host your account in an RBI-licensed bank</h6>
+                <h5>Book Appointments and Lab Tests</h5>
+                <h6>24*7 Available</h6>
             </div>
         </div>
-        <div class="pagecomp">
-            <img src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/security.png" alt="as">
-            <div class="textSection">
-                <h5>Max Security</h5>
-                <h6>Which means bank-grade security and ISO and PCI compliant</h6>
-            </div>
-        </div>
-        <div class="pagecomp">
-            <img src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/safety.png" alt="as">
-            <div class="textSection">
-                <h5>Max Safety</h5>
-                <h6>Your money is always insured</h6>
-            </div>
-        </div>
+
     </div>
 </div>
 
+<div id="med"></div>
+<div class="containerMod container3">
+    <div class="padRL">
+        <a class="moveDownLink" href="#med"> Get all your medicines.
+            Everytime. On time. </a>
+
+        <div class="pagecomp pushDown">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/delevery.svg"
+                alt="as">
+            <div class="textSection">
+                <h5>24*7 Order medicines</h5>
+                <h6>Get Home Delivery on next day</h6>
+            </div>
+        </div>
+        <div class="pagecomp">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/time.svg"
+                alt="as">
+            <div class="textSection">
+                <h5>Set Medicine Subscription</h5>
+                <h6>Get meds at your doorsteps</h6>
+            </div>
+        </div>
+        <div class="pagecomp">
+            <img src="https://raw.githubusercontent.com/pratikkabade/hopeClinic/203ff5012ce00b4aa4175ecde50a6e908cbeee9d/frontend/.assets/lab.svg"
+                alt="as">
+            <div class="textSection">
+                <h5>Integrated Labs</h5>
+                <h6>Report Available in few hours</h6>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div class="centreText">
     <a class="moveDownLink" href="#page3" id="page3">More </a>
 </div>
-<div class="footer containerMod ">
+<div class="footer containerMod noSelect">
 
     <div class="appLink">
-        <h1>EdgeBank</h1>
+        <h1>Apps</h1>
         <a asp-controller="Home" asp-action="Index"><img
-                src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/play.png" alt="play"></a>
+                src="https://github.com/pratikkabade/EdgeBank/raw/%236-F-Home/frontend/Assets/play.png" alt="play"></a>
         <br>
         <a asp-controller="Home" asp-action="Index"><img
-                src="https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/app.png" alt="app"></a>
+                src="https://github.com/pratikkabade/EdgeBank/raw/%236-F-Home/frontend/Assets/app.png" alt="app"></a>
     </div>
     <div class="appLink">
-        <h1>Company</h1>
-        <a asp-controller="Home" asp-action="Team">Team</a> <br>
-        <a asp-controller="ContactUs" asp-action="ContactUs">Contact Us</a>
+        <h1>Services</h1>
+        <a asp-controller="Doctor" asp-action="Doctor">Book a Doctor</a> <br>
+        <a asp-controller="Order" asp-action="Order">Order your Medicines</a>
+    </div>
+    <div class="appLink">
+        <h1>Care</h1>
+        <a asp-controller="ContactUs" asp-action="ContactUs">Contact Us</a> <br>
+        <a asp-controller="Issues" asp-action="Issues">Report Problem</a>
     </div>
     <div class="appLink">
         <h1>Social</h1>
@@ -74,10 +122,5 @@
 </div>
 
 <div class="footerLogo containerMod">
-    <a asp-controller="Home" asp-action="Index" class="logoLink">
-        <img alt='a' src='https://github.com/pratikkabade/edgeBank/raw/%236-F-Home/frontend/Assets/logo.png'
-            draggable='false' />
-        EdgeBank
-    </a>
-    <h5>Copyright © 2022, EdgeBank. All rights reserved.</h5>
+    <h5>Copyright © 2022, Hope Clinic. All rights reserved.</h5>
 </div>

@@ -1,0 +1,16 @@
+# Create Order
+
+POST https://localhost:5001/api/order/
+Content-Type: application/json
+
+{
+  "MemberId":"2434",
+  "Insurance_Policy_Number": "123456789",
+  "InsuranceProvider": "ICICI",
+  "PrescriptionDate": "1999-11-18T06:30:00",
+  "DosageForDay": 2,
+  "PrescriptionCourse": "2 weeks",
+  "DoctorDetails": "Dr. John",
+  "UserId":1,
+  "DrugId":1
+}

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Orders Recieved";
+}
+@model List<Order>
+<style>
+    main,
+    body,
+    html,
+    .container {
+        width: 100% !important;
+        max-width: 10000px;
+        height: 100% !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        margin-top: 65px !important;
+    }
+</style>
+<table class="table table-condensed table-striped  table-hover pushDown padRL">
+    <thead>
+        <tr>
+            <th style="width: 5%;">TransactionId</th>
+            <th style="width: 10%;">MemberId</th>
+            <th style="width: 10%;">Insurance_Policy_Number</th>
+            <th style="width: 10%;">InsuranceProvider</th>
+            <th style="width: 10%;">PrescriptionDate</th>
+            <th style="width: 10%;">DosageForDay</th>
+            <th style="width: 10%;">PrescriptionCourse</th>
+            <th style="width: 10%;">DoctorDetails</th>
+            <th style="width: 10%;">UserId</th>
+            <th style="width: 10%;">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width: 5%;">@item.TransactionId</td>
+                <td style="width: 10%;">@item.MemberId</td>
+                <td style="width: 10%;">@item.Insurance_Policy_Number</td>
+                <td style="width: 10%;">@item.InsuranceProvider</td>
+                <td style="width: 10%;">@item.PrescriptionDate</td>
+                <td style="width: 10%;">@item.DosageForDay</td>
+                <td style="width: 10%;">@item.PrescriptionCourse</td>
+                <td style="width: 10%;">@item.DoctorDetails</td>
+                <td style="width: 10%;">@item.UserId</td>
+                <td style="width: 10%;"><a href="mailto:@item.Email" class="emailLink">@item.Email</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

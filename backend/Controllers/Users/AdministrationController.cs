@@ -14,7 +14,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BackendAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AdministrationController : Controller
@@ -36,7 +35,6 @@ namespace BackendAPI.Controllers
         }
 
         // DETAILS
-        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public Users Get(int id)
         {
@@ -44,18 +42,16 @@ namespace BackendAPI.Controllers
         }
 
         // CREATE
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public string Post([FromBody] Users New_User)
         {
             this.user_data_context.User.Add(New_User);
             this.user_data_context.SaveChanges();
-            return "New_User created successfully!";
+            return "New User created successfully!";
         }
 
 
         // EDIT
-        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Users New_User)
         {
@@ -64,12 +60,37 @@ namespace BackendAPI.Controllers
         }
 
         // DELETE
-        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             this.user_data_context.User.Remove(this.user_data_context.User.Where(New_User => New_User.UserId == id).FirstOrDefault());
             this.user_data_context.SaveChanges();
         }
+
+
+        // DETAILS-MAIL
+        [HttpGet("email/{email}")]
+        public Users GetMail(string email)
+        {
+            return this.user_data_context.User.Where(user => user.Email == email).FirstOrDefault();
+        }
+
+
+        // EDIT-BYEMAIL
+        [HttpPut("email/{email}")]
+        public void PutMail(string email, [FromBody] Users New_User)
+        {
+            this.user_data_context.User.Update(New_User);
+            this.user_data_context.SaveChanges();
+        }
+
+        // DELETE-BYEMAIL
+        [HttpDelete("email/{email}")]
+        public void DeleteMail(string email)
+        {
+            this.user_data_context.User.Remove(this.user_data_context.User.Where(New_User => New_User.Email == email).FirstOrDefault());
+            this.user_data_context.SaveChanges();
+        }
+
     }
 }

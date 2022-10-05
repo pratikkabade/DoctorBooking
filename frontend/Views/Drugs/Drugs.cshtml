@@ -1,0 +1,42 @@
+@{
+    ViewBag.Title = "Drugs";
+}
+@model Drugs
+
+<form asp-action="Drugs" asp-controller="Drugs" method="post" class="contactForm">
+    <h1 class="headerText" style="color: #fd4741;">Add Drug</h1>
+    <div class="form-group">
+        <input asp-for="Name" type="text" class="form-control" id="Name" placeholder="Enter drug Name">
+    </div>
+    <div class="form-group">
+        <input asp-for="Manufacturer" type="text" class="form-control" id="Manufacturer"
+            placeholder="Enter Manufacturer">
+    </div>
+    <div class="form-group" style="display: flex;">
+        <input asp-for="ManufacturedDate" type="text" class="form-control datedropper-init dateFormRed" id="date-input"
+            placeholder="Enter Manufactured Date" data-dd-large="true" data-dd-max-date="09/31/2022" style="width:80%">
+        <i class=" fa-regular fa-calendar-plus calIconRed"></i>
+    </div>
+    <div class="form-group" style="display: flex;">
+        <input asp-for="ExpiryDate" type="text" class="form-control datedropper-init dateFormRed" id="date-input"
+            placeholder="Enter Expiry Date" data-dd-large="true" style="width:80%">
+        <i class=" fa-regular fa-calendar-plus calIconRed"></i>
+    </div>
+    <div class="form-group">
+        <input asp-for="Quantities" type="text" class="form-control" id="Quantities" placeholder="Enter Quantities">
+    </div>
+    <div class="form-group">
+        <input asp-for="Location" type="text" class="form-control" id="Location" placeholder="Enter Location">
+    </div>
+    <div class="form-group">
+        <input asp-for="UserId" type="text" class="form-control" id="UserId" placeholder="Enter UserId">
+    </div>
+    <button type="submit" class="contactButton" style="background-color: #fd4741; box-shadow:none">Submit</button>
+</form>
+
+<script>
+    $('#date-input').dateDropper({
+        large: true,
+        minDate: '01/01/2021',
+    });
+</script>

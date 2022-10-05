@@ -1,0 +1,56 @@
+@{
+    ViewBag.Title = "Send Order";
+}
+@model Order
+
+<form asp-action="Order" asp-controller="Order" method="post" class="contactForm">
+
+
+
+    <h1 class="headerText" style="color:#1dc57b">Send your order</h1>
+    <div class="form-group">
+        <input asp-for="MemberId" type="text" class="form-control" id="MemberId" placeholder="Enter your MemberId">
+    </div>
+    <div class="form-group">
+        <input asp-for="Insurance_Policy_Number" type="text" class="form-control" id="Insurance_Policy_Number"
+            placeholder="Enter your Insurance Policy Number">
+    </div>
+    <div class="form-group">
+        <input asp-for="InsuranceProvider" type="text" class="form-control" id="InsuranceProvider"
+            placeholder="Enter Insurance Provider">
+    </div>
+    <div class="form-group" style="display: flex;">
+        <input asp-for="PrescriptionDate" type="text" class="form-control datedropper-init dateForm" id="date-input"
+            placeholder="Enter Prescription Date" data-dd-large="true" data-dd-max-date="09/31/2022"
+            data-dd-theme="leaf" style="width:80%">
+        <i class=" fa-regular fa-calendar-plus calIcon"></i>
+    </div>
+
+    <div class="form-group">
+        <input asp-for="DosageForDay" type="text" class="form-control" id="DosageForDay"
+            placeholder="Enter Dosage For Day">
+    </div>
+    <div class="form-group">
+        <input asp-for="PrescriptionCourse" type="text" class="form-control" id="PrescriptionCourse"
+            placeholder="Enter Prescription Course">
+    </div>
+    <div class="form-group">
+        <input asp-for="DoctorDetails" type="text" class="form-control" id="DoctorDetails"
+            placeholder="Enter Doctor Details">
+    </div>
+    <div class="form-group">
+        <input asp-for="UserId" type="text" class="form-control" id="UserId" placeholder="Enter UserId">
+    </div>
+    <div class="form-group">
+        <input asp-for="DrugId" type="text" class="form-control" id="DrugId" placeholder="Enter DrugId">
+    </div>
+    <button type="submit" class="contactButton" style="background-color:#1dc57b; box-shadow:none ">Submit</button>
+</form>
+
+<script>
+    $('#date-input').dateDropper({
+        large: true,
+        minDate: '01/01/2021',
+        theme: 'leaf'
+    });
+</script>
